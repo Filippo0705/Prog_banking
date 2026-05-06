@@ -1,0 +1,88 @@
+
+        :root {
+            --primary: #00d2ff;
+            --bg-glass: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            height: 150vh;
+            background-color: darkslateblue;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* La Navbar Magica */
+        .nav-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            padding: 10px 30px;
+            background: grey;
+            backdrop-filter: blur(15px); /* Sfocatura sfondo */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            padding: 8px 15px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        /* Effetto Hover "Ganza" */
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        .nav-links li a:hover::after {
+            width: 80%;
+        }
+
+        .nav-links li a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        /* Bottone Call to Action */
+        .cta-btn {
+            margin-left: 20px;
+            padding: 10px 25px;
+            background: var(--primary);
+            color: darkgrey;
+            border-radius: 25px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--primary);
+        }
