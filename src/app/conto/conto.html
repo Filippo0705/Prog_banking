@@ -22,47 +22,49 @@
   </section>
 
   <!-- ACCOUNT INFO -->
-  <section class="account-section">
+  <section class="account-section" *ngIf="account$ | async as account; else accountLoading">
     <div class="account-card">
       <h2>Saldo Disponibile</h2>
-      <span class="balance">€ 12.450,90</span>
+      <span class="balance">{{ account.currency }} {{ account.balance | number:'1.2-2' }}</span>
     </div>
     <div class="account-card">
-      <h2>IBAN</h2>
-      <span class="iban">IT60X0542811101000000123456</span>
+      <h2>Conto</h2>
+      <span class="iban">{{ account.iban }}</span>
     </div>
     <div class="account-card">
       <h2>Ultimo Accesso</h2>
-      <span>12 Maggio 2026 - 18:42</span>
+      <span>{{ todayLabel }}</span>
     </div>
   </section>
+  <ng-template #accountLoading>
+    <section class="account-section">
+      <p>Caricamento dati conto...</p>
+    </section>
+  </ng-template>
 
   <!-- MOVIMENTI -->
   <section class="transactions">
     <div class="section-title">
       <h2>Ultimi Movimenti</h2>
     </div>
-    <div class="transaction-card income">
-      <div>
-        <h3>Bonifico Ricevuto</h3>
-        <p>10 Maggio 2026</p>
+    <ng-container *ngIf="transactions$ | async as transactions; else txLoading">
+      <p *ngIf="transactions.length === 0">Nessun movimento disponibile.</p>
+      <div
+        *ngFor="let tx of transactions"
+        class="transaction-card"
+        [class.income]="tx.amount >= 0"
+        [class.expense]="tx.amount < 0"
+      >
+        <div>
+          <h3>{{ tx.description || tx.type }}</h3>
+          <p>{{ tx.date }}</p>
+        </div>
+        <span>{{ tx.amount >= 0 ? '+' : '-' }} {{ tx.amount | number:'1.2-2' }}</span>
       </div>
-      <span>+ € 1.250,00</span>
-    </div>
-    <div class="transaction-card expense">
-      <div>
-        <h3>Pagamento Carta</h3>
-        <p>09 Maggio 2026</p>
-      </div>
-      <span>- € 89,90</span>
-    </div>
-    <div class="transaction-card expense">
-      <div>
-        <h3>Amazon Marketplace</h3>
-        <p>08 Maggio 2026</p>
-      </div>
-      <span>- € 42,50</span>
-    </div>
+    </ng-container>
+    <ng-template #txLoading>
+      <p>Caricamento movimenti...</p>
+    </ng-template>
   </section>
 
   <!-- QUICK ACTIONS -->

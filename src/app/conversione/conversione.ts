@@ -15,7 +15,6 @@ export class Conversione {
   toCurrency = 'USD';
   amount = 0;
   conversion$?: Observable<ConversionResult>;
-  readonly accountId = 'default-account-id';
 
   constructor(private bankingService: BankingService) {}
 
@@ -25,7 +24,7 @@ export class Conversione {
     }
 
     this.conversion$ = this.bankingService.convertCurrency(
-      this.accountId,
+      this.bankingService.getActiveAccountId(),
       this.fromCurrency,
       this.toCurrency,
       this.amount

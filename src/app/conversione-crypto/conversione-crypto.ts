@@ -15,7 +15,6 @@ export class ConversioneCrypto {
   cryptoSymbol = 'BTC';
   amount = 0;
   conversion$?: Observable<ConversionResult>;
-  readonly accountId = 'default-account-id';
 
   constructor(private bankingService: BankingService) {}
 
@@ -25,7 +24,7 @@ export class ConversioneCrypto {
     }
 
     this.conversion$ = this.bankingService.convertCrypto(
-      this.accountId,
+      this.bankingService.getActiveAccountId(),
       this.fromCurrency,
       this.cryptoSymbol,
       this.amount

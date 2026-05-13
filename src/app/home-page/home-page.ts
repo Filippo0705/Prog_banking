@@ -32,6 +32,7 @@ export class HomePage {
       next: (exists) => {
         this.loading = false;
         if (exists) {
+          this.bankingService.storeActiveAccountId(iban);
           this.router.navigate(['/conto']);
         } else {
           this.errorMessage = 'Il conto inserito non esiste.';

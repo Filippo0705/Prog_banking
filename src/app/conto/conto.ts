@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Navbar } from '../navbar/navbar';
 import { BankingService, Account, Transaction } from '../service/banking-service';
 
@@ -11,8 +11,10 @@ import { BankingService, Account, Transaction } from '../service/banking-service
   styleUrl: './conto.css',
 })
 export class Conto implements OnInit {
-  readonly accountIban = 'IT60X0542811101000000123456';
-  readonly accountId = 'default-account-id';
+  readonly todayLabel = new Intl.DateTimeFormat('it-IT', {
+    dateStyle: 'long',
+    timeStyle: 'short',
+  }).format(new Date());
 
   account$!: Observable<Account>;
   transactions$!: Observable<Transaction[]>;
@@ -20,7 +22,10 @@ export class Conto implements OnInit {
   constructor(private bankingService: BankingService) {}
 
   ngOnInit(): void {
-    this.account$ = this.bankingService.getAccount(this.accountIban);
-    this.transactions$ = this.bankingService.getTransactions(this.accountId);
+    const accountId = this.bankingService.getActiveAccountId();
+    this.account$ = this.bankingService.getAccount(accountId);
+    this.transactions$ = this.bankingService
+      .getTransactions(accountId)
+      .pipe(map((txs) => txs.slice(0, 5)));
   }
 }

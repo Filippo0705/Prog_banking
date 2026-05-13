@@ -1,7 +1,7 @@
 <section class="balance-page" *ngIf="balance$ | async as balance; else loading">
   <div class="balance-card">
     <h2>Saldo disponibile</h2>
-    <p class="amount">€ {{ balance.balance | number:'1.2-2' }}</p>
+    <p class="amount">{{ balance.currency }} {{ balance.balance | number:'1.2-2' }}</p>
     <p class="currency">Valuta: {{ balance.currency }}</p>
   </div>
 </section>

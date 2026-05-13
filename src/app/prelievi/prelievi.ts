@@ -12,8 +12,6 @@ import { BankingService } from '../service/banking-service';
 export class Prelievi {
   amount = 0;
   resultMessage = '';
-  readonly accountId = 'default-account-id';
-
   constructor(private bankingService: BankingService) {}
 
   submitWithdraw(): void {
@@ -22,7 +20,7 @@ export class Prelievi {
       return;
     }
 
-    this.bankingService.withdraw(this.accountId, this.amount).subscribe({
+    this.bankingService.withdraw(this.bankingService.getActiveAccountId(), this.amount).subscribe({
       next: (result) => {
         this.resultMessage = result.message;
       },

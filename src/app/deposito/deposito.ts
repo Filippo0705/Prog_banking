@@ -12,8 +12,6 @@ import { BankingService } from '../service/banking-service';
 export class Deposito {
   amount = 0;
   resultMessage = '';
-  readonly accountId = 'default-account-id';
-
   constructor(private bankingService: BankingService) {}
 
   submitDeposit(): void {
@@ -22,7 +20,7 @@ export class Deposito {
       return;
     }
 
-    this.bankingService.deposit(this.accountId, this.amount).subscribe({
+    this.bankingService.deposit(this.bankingService.getActiveAccountId(), this.amount).subscribe({
       next: (result) => {
         this.resultMessage = result.message;
       },

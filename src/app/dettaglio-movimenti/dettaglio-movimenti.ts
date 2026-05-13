@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { BankingService, Transaction } from '../service/banking-service';
@@ -9,12 +9,17 @@ import { BankingService, Transaction } from '../service/banking-service';
   templateUrl: './dettaglio-movimenti.html',
   styleUrl: './dettaglio-movimenti.css',
 })
-export class DettaglioMovimenti {
-  readonly accountId = 'default-account-id';
+export class DettaglioMovimenti implements OnInit {
+  /** Imposta un id reale quando colleghi la lista movimenti al dettaglio. */
   readonly transactionId = 'sample-transaction-id';
   transaction$!: Observable<Transaction>;
 
-  constructor(private bankingService: BankingService) {
-    this.transaction$ = this.bankingService.getTransactionDetail(this.accountId, this.transactionId);
+  constructor(private bankingService: BankingService) {}
+
+  ngOnInit(): void {
+    this.transaction$ = this.bankingService.getTransactionDetail(
+      this.bankingService.getActiveAccountId(),
+      this.transactionId
+    );
   }
 }

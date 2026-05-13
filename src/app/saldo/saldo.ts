@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { BankingService, Balance } from '../service/banking-service';
@@ -9,11 +9,12 @@ import { BankingService, Balance } from '../service/banking-service';
   templateUrl: './saldo.html',
   styleUrl: './saldo.css',
 })
-export class Saldo {
-  readonly accountId = 'default-account-id';
+export class Saldo implements OnInit {
   balance$!: Observable<Balance>;
 
-  constructor(private bankingService: BankingService) {
-    this.balance$ = this.bankingService.getBalance(this.accountId);
+  constructor(private bankingService: BankingService) {}
+
+  ngOnInit(): void {
+    this.balance$ = this.bankingService.getBalance(this.bankingService.getActiveAccountId());
   }
 }
