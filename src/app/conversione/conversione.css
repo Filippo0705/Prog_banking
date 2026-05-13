@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.conversion-page {
+  min-height: calc(100vh - 80px);
+  background: #f4f6f9;
+  padding: 60px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.conversion-form {
+  width: 100%;
+  max-width: 560px;
+  background: white;
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.conversion-page h2 {
+  color: #4b0082;
+  margin-bottom: 24px;
+  font-size: 32px;
+}
+
+.conversion-form label {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.conversion-form input,
+.conversion-form select {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.conversion-form button {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: #4b0082;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.conversion-form button:hover {
+  background: #5a189a;
+}
+
+.conversion-result {
+  margin-top: 24px;
+  background: #eef2ff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.conversion-result h3 {
+  color: #4b0082;
+  margin-bottom: 16px;
+}

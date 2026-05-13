@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.balance-page {
+  min-height: calc(100vh - 80px);
+  background: #f4f6f9;
+  padding: 60px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.balance-card {
+  background: white;
+  padding: 40px 45px;
+  border-radius: 18px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+.balance-card h2 {
+  margin-bottom: 20px;
+  color: #4b0082;
+  font-size: 32px;
+}
+
+.amount {
+  font-size: 48px;
+  font-weight: 800;
+  color: #2e8b57;
+  margin-bottom: 12px;
+}
+
+.currency {
+  color: #555;
+  font-size: 16px;
+}

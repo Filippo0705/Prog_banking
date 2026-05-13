@@ -1,63 +1,65 @@
 <!DOCTYPE html>
-    <html lang="it">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Banca Viola</title>
-        </head>
-    <body>
-     <header>
-        <div class="logo">Banca Viola</div>
-           <app-navbar></app-navbar>
-     </header>
-    <section class="hero">
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banca Viola</title>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">Banca Viola</div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
     <div class="hero-text">
-        <h1>La banca digitale per il tuo futuro</h1>
-        <p>
-            Gestisci il tuo denaro con semplicità,
-            sicurezza e velocità.
-        </p>
-        <button>Apri un Conto</button>
+      <h1>La banca digitale per il tuo futuro</h1>
+      <p>Gestisci il tuo denaro con semplicità, sicurezza e velocità.</p>
+      
+      <!-- BOX CONTO -->
+      <div class="account-box">
+        <form (ngSubmit)="validateAccount()">
+          <label for="conto">Inserisci il numero del conto</label>
+          <div class="input-group">
+            <input
+              type="text"
+              id="conto"
+              name="conto"
+              placeholder="ES: IT60X0542811101000000123456"
+              [(ngModel)]="accountNumber"
+            />
+            <button class="search-btn" type="submit" [disabled]="loading">
+              {{ loading ? 'Verifica...' : 'Accedi' }}
+            </button>
+          </div>
+        </form>
+        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+      </div>
     </div>
-    </section>
-    <section class="cards">
-        <div class="card">
-            <h2>Conto Smart</h2>
-            <p>Zero spese e gestione completamente online.</p>
+  </section>
 
+  <!-- CARDS -->
+  <section class="cards">
+    <div class="card">
+      <h2>Conto Smart</h2>
+      <p>Zero spese e gestione completamente online.</p>
+    </div>
+    <div class="card">
+      <h2>Prestiti Rapidi</h2>
+      <p>Ottieni liquidità in pochi minuti direttamente dall'app.</p>
+    </div>
+    <div class="card">
+      <h2>Investimenti</h2>
+      <p>Fai crescere i tuoi risparmi con strumenti innovativi.</p>
+    </div>
+  </section>
 
-
-        </div>
-        <div class="card">
-            <h2>Prestiti Rapidi</h2>
-            <p>Ottieni liquidità in pochi minuti direttamente dall'app.</p>
-
-
-
-        </div>
-
-        <div class="card">
-            <h2>Investimenti</h2>
-            <p>Fai crescere i tuoi risparmi con strumenti innovativi.</p>
-
-
-
-        </div>
-
-
-
-    </section>
-
-
-
-    <footer>
-        <p>© 2026 Banca Viola - Tutti i diritti riservati</p>
-
-
-
-    </footer>
-
-
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Banca Viola - Tutti i diritti riservati</p>
+  </footer>
 
 </body>
 </html>

@@ -5,29 +5,29 @@ import { Observable } from 'rxjs';
 import { BankingService, ConversionResult } from '../service/banking-service';
 
 @Component({
-  selector: 'app-conversione',
+  selector: 'app-conversione-crypto',
   imports: [CommonModule, FormsModule],
-  templateUrl: './conversione.html',
-  styleUrl: './conversione.css',
+  templateUrl: './conversione-crypto.html',
+  styleUrl: './conversione-crypto.css',
 })
-export class Conversione {
+export class ConversioneCrypto {
   fromCurrency = 'EUR';
-  toCurrency = 'USD';
+  cryptoSymbol = 'BTC';
   amount = 0;
   conversion$?: Observable<ConversionResult>;
   readonly accountId = 'default-account-id';
 
   constructor(private bankingService: BankingService) {}
 
-  convert(): void {
-    if (this.amount <= 0 || this.fromCurrency === this.toCurrency) {
+  convertCrypto(): void {
+    if (this.amount <= 0) {
       return;
     }
 
-    this.conversion$ = this.bankingService.convertCurrency(
+    this.conversion$ = this.bankingService.convertCrypto(
       this.accountId,
       this.fromCurrency,
-      this.toCurrency,
+      this.cryptoSymbol,
       this.amount
     );
   }

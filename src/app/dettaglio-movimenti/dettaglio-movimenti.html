@@ -1,0 +1,14 @@
+<section class="transaction-detail-page" *ngIf="transaction$ | async as transaction; else loading">
+  <h2>Dettaglio movimento</h2>
+  <div class="transaction-detail-card">
+    <p><strong>Tipo:</strong> {{ transaction.type }}</p>
+    <p><strong>Data:</strong> {{ transaction.date }}</p>
+    <p><strong>Descrizione:</strong> {{ transaction.description }}</p>
+    <p><strong>Importo:</strong> € {{ transaction.amount | number:'1.2-2' }}</p>
+    <p *ngIf="transaction.balanceAfter !== undefined"><strong>Saldo dopo operazione:</strong> € {{ transaction.balanceAfter | number:'1.2-2' }}</p>
+  </div>
+</section>
+
+<ng-template #loading>
+  <p>Caricamento dettaglio movimenti...</p>
+</ng-template>

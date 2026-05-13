@@ -1,1 +1,11 @@
-<p>deposito works!</p>
+<section class="deposit-page">
+  <h2>Deposito</h2>
+  <form (ngSubmit)="submitDeposit()" class="deposit-form">
+    <label for="amount">Importo da depositare</label>
+    <input id="amount" name="amount" type="number" [(ngModel)]="amount" min="0" required />
+    <button type="submit">Conferma deposito</button>
+  </form>
+  <div class="result-message" *ngIf="resultMessage">
+    {{ resultMessage }}
+  </div>
+</section>

@@ -8,7 +8,6 @@ font-family:Arial,sans-serif;
 body{
 background:#f4f6f9;
 color:#222;
-height: 95vh;
 }
 
 /* HEADER */
@@ -18,10 +17,11 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:20px 60px;
-background:#4c008200;
+background:#4b0082;
 color:white;
-position:fixed;
+position:sticky;
 top:0;
+z-index:1000;
 }
 
 .logo{
@@ -29,57 +29,105 @@ font-size:28px;
 font-weight:bold;
 }
 
+/* NAVBAR */
+
+.navbar ul{
+display:flex;
+list-style:none;
+gap:25px;
+}
+
+.navbar a{
+text-decoration:none;
+color:white;
+font-weight:bold;
+transition:0.3s;
+}
+
+.navbar a:hover{
+opacity:0.7;
+}
+
 /* HERO SECTION */
 
 .hero{
-height:500px;
+height:550px;
 display:flex;
 align-items:center;
-padding:100px;
+padding:60px;
 background:linear-gradient(to right,#4b0082,#7b2cbf);
 color:white;
 }
 
 .hero-text{
-max-width:500px;
+max-width:650px;
 }
 
 .hero h1{
-font-size:52px;
+font-size:58px;
 margin-bottom:20px;
 }
 
 .hero p{
 font-size:20px;
-margin-bottom:30px;
+margin-bottom:35px;
+line-height:1.6;
 }
 
-button{
-padding:15px 30px;
-border:none;
-background:white;
-color:#4b0082;
+/* ACCOUNT BOX */
+
+.account-box{
+background:rgba(255,255,255,0.12);
+padding:25px;
+border-radius:16px;
+backdrop-filter:blur(5px);
+width:100%;
+}
+
+.account-box label{
+display:block;
+margin-bottom:15px;
 font-size:18px;
-border-radius:8px;
-cursor:pointer;
 font-weight:bold;
 }
 
-/* CARDS */
-
-.cards{
+.input-group{
 display:flex;
-gap:30px;
-justify-content:center;
-padding:70px 40px;
+gap:15px;
 }
 
-.card{
+.input-group input{
+flex:1;
+padding:16px;
+border:none;
+border-radius:10px;
+font-size:16px;
+outline:none;
+}
+
+.search-btn{
+padding:16px 28px;
+border:none;
 background:white;
-padding:35px;
-border-radius:14px;
-width:300px;
+color:#4b0082;
+font-size:16px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+
+.error-message {
+  margin-top: 14px;
+  color: #ff3d60;
+  font-weight: bold;
+}
 box-shadow:0 8px 18px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
 }
 
 .card h2{
@@ -94,7 +142,4 @@ background:#1c1c1c;
 color:white;
 text-align:center;
 padding:25px;
-position: fixed;
-bottom: 0px;
-width: 100%;
 }

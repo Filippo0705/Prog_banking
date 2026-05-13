@@ -1,1 +1,19 @@
-<p>movimenti works!</p>
+<section class="movements-page">
+  <h2>Elenco movimenti</h2>
+  <div *ngIf="transactions$ | async as transactions; else loading">
+    <div *ngFor="let transaction of transactions" class="transaction-item">
+      <div class="transaction-details">
+        <span class="transaction-type">{{ transaction.type }}</span>
+        <span class="transaction-date">{{ transaction.date }}</span>
+        <p class="transaction-description">{{ transaction.description }}</p>
+      </div>
+      <div class="transaction-amount" [class.positive]="transaction.amount >= 0" [class.negative]="transaction.amount < 0">
+        {{ transaction.amount >= 0 ? '+' : '-' }} € {{ transaction.amount | number:'1.2-2' }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #loading>
+  <p>Recupero movimenti in corso...</p>
+</ng-template>

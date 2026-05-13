@@ -1,6 +1,6 @@
-<section class="conversion-page">
-  <h2>Conversione Valute</h2>
-  <form class="conversion-form" (ngSubmit)="convert()">
+<section class="crypto-conversion-page">
+  <h2>Conversione Crypto</h2>
+  <form class="crypto-form" (ngSubmit)="convertCrypto()">
     <label for="amount">Importo</label>
     <input id="amount" name="amount" type="number" [(ngModel)]="amount" min="0" required />
 
@@ -8,17 +8,16 @@
     <select id="fromCurrency" name="fromCurrency" [(ngModel)]="fromCurrency">
       <option value="EUR">EUR</option>
       <option value="USD">USD</option>
-      <option value="GBP">GBP</option>
     </select>
 
-    <label for="toCurrency">A valuta</label>
-    <select id="toCurrency" name="toCurrency" [(ngModel)]="toCurrency">
-      <option value="USD">USD</option>
-      <option value="EUR">EUR</option>
-      <option value="GBP">GBP</option>
+    <label for="cryptoSymbol">Criptovaluta</label>
+    <select id="cryptoSymbol" name="cryptoSymbol" [(ngModel)]="cryptoSymbol">
+      <option value="BTC">BTC</option>
+      <option value="ETH">ETH</option>
+      <option value="USDT">USDT</option>
     </select>
 
-    <button type="submit">Converti</button>
+    <button type="submit">Converti in crypto</button>
   </form>
 
   <section *ngIf="conversion$ | async as conversion" class="conversion-result">

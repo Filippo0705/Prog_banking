@@ -3,7 +3,7 @@
   font-family: Arial, sans-serif;
 }
 
-.deposit-page {
+.crypto-conversion-page {
   min-height: calc(100vh - 80px);
   background: #f4f6f9;
   padding: 60px 40px;
@@ -12,30 +12,30 @@
   align-items: center;
 }
 
-.deposit-form {
+.crypto-form {
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
   background: white;
   padding: 40px;
   border-radius: 18px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
 }
 
-.deposit-form h2,
-.deposit-page h2 {
+.crypto-conversion-page h2 {
   color: #4b0082;
   margin-bottom: 24px;
   font-size: 32px;
 }
 
-.deposit-form label {
+.crypto-form label {
   display: block;
-  margin-bottom: 10px;
   font-weight: bold;
   color: #333;
+  margin-bottom: 10px;
 }
 
-.deposit-form input {
+.crypto-form input,
+.crypto-form select {
   width: 100%;
   padding: 16px;
   border-radius: 12px;
@@ -44,7 +44,7 @@
   font-size: 16px;
 }
 
-.deposit-form button {
+.crypto-form button {
   width: 100%;
   padding: 16px;
   border: none;
@@ -57,12 +57,19 @@
   transition: 0.3s;
 }
 
-.deposit-form button:hover {
+.crypto-form button:hover {
   background: #5a189a;
 }
 
-.result-message {
-  margin-top: 20px;
-  color: #333;
-  font-weight: bold;
+.conversion-result {
+  margin-top: 24px;
+  background: #eef2ff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.conversion-result h3 {
+  color: #4b0082;
+  margin-bottom: 16px;
 }

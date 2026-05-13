@@ -1,1 +1,11 @@
-<p>prelievi works!</p>
+<section class="withdrawal-page">
+  <h2>Prelievo</h2>
+  <form (ngSubmit)="submitWithdraw()" class="withdraw-form">
+    <label for="amount">Importo da prelevare</label>
+    <input id="amount" name="amount" type="number" [(ngModel)]="amount" min="0" required />
+    <button type="submit">Conferma prelievo</button>
+  </form>
+  <div class="result-message" *ngIf="resultMessage">
+    {{ resultMessage }}
+  </div>
+</section>

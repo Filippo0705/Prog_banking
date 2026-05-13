@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.withdrawal-page {
+  min-height: calc(100vh - 80px);
+  background: #f4f6f9;
+  padding: 60px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.withdraw-form {
+  width: 100%;
+  max-width: 520px;
+  background: white;
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.withdrawal-page h2 {
+  color: #4b0082;
+  margin-bottom: 24px;
+  font-size: 32px;
+}
+
+.withdraw-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.withdraw-form input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.withdraw-form button {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: #4b0082;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.withdraw-form button:hover {
+  background: #5a189a;
+}
+
+.result-message {
+  margin-top: 20px;
+  color: #333;
+  font-weight: bold;
+}
