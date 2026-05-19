@@ -21,9 +21,17 @@
     <button type="submit">Converti</button>
   </form>
 
-  <section *ngIf="conversion$ | async as conversion" class="conversion-result">
-    <h3>Risultato conversione</h3>
-    <p>{{ conversion.originalAmount }} {{ conversion.fromCurrency }} =&gt; {{ conversion.convertedAmount | number:'1.2-2' }} {{ conversion.toCurrency }}</p>
-    <p>Tariffa applicata: {{ conversion.rate | number:'1.4-4' }}</p>
+ <section *ngIf="conversion$ | async as conversion; else noConversion" class="conversion-result">
+  <h3>Risultato conversione</h3>
+  <p>
+    {{ conversion.originalAmount }} {{ conversion.fromCurrency }} =&gt; 
+    {{ conversion.convertedAmount | number:'1.2-2' }} {{ conversion.toCurrency }}
+  </p>
+  <p>Tariffa applicata: {{ conversion.rate | number:'1.4-4' }}</p>
   </section>
 </section>
+
+<!-- Messaggio mostrato quando non c'è ancora nessuna conversione attiva -->
+<ng-template #noConversion>
+  <p class="placeholder-text">Seleziona i dati e calcola la conversione.</p>
+</ng-template>

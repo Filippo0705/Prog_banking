@@ -1,12 +1,13 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { Provider } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { Provider, EnvironmentProviders } from '@angular/core';
+
 
 export const API_BASE_URL = environment.apiUrl.replace(/\/$/, '');
 
-export const bankingTestProviders: Provider[] = [
+export const bankingTestProviders: (Provider | EnvironmentProviders)[] = [
   provideHttpClient(),
   provideHttpClientTesting(),
   provideRouter([]),

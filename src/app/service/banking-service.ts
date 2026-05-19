@@ -105,7 +105,13 @@ export class BankingService {
   }
 
   getTransactions(accountId: string): Observable<Transaction[]> {
-    return this.http.get<Transaction[]>(this.accountUrl(accountId, 'transactions'));
+    const url = `${this.baseUrl}/accounts/${accountId}/transactions`;
+    return this.http.get<Transaction[]>(url).pipe(map(
+      (body : any) => {
+        const list = Array.isArray(body) ? body : body.transactions;
+        return list.map((tx: Transaction) => this.mapServerTransaction(tx));
+      }
+    ));
   }
 
   getTransactionDetail(accountId: string, transactionId: string): Observable<Transaction> {
@@ -139,21 +145,16 @@ export class BankingService {
     );
   }
 
-  convertCurrency(
-    accountId: string,
-    fromCurrency: string,
-    toCurrency: string,
-    amount: number
-  ): Observable<ConversionResult> {
-    const params = new HttpParams()
-      .set('fromCurrency', fromCurrency)
-      .set('toCurrency', toCurrency)
-      .set('amount', String(amount));
-    return this.http.get<ConversionResult>(this.accountUrl(accountId, 'balance/convert/fiat'), {
-      params,
-    });
-  }
-
+convertCurrency(
+  accountId: string,
+  fromCurrency: string, // Se l'API non lo usa, puoi rimuoverlo dai parametri
+  toCurrency: string,
+  amount: number
+): Observable<ConversionResult> {
+  const url = `${this.baseUrl}/accounts/${accountId}/balance/convert/fiat?to=${encodeURIComponent(toCurrency)}&amount=${amount}`;
+  
+  return this.http.get<ConversionResult>(url);
+}
   convertCrypto(
     accountId: string,
     fromCurrency: string,
@@ -167,5 +168,20 @@ export class BankingService {
     return this.http.get<ConversionResult>(this.accountUrl(accountId, 'balance/convert/crypto'), {
       params,
     });
+  }
+
+
+private mapServerTransaction(tx: Transaction): Transaction {
+    const mappedType: Transaction['type'] =
+      tx.type === 'deposit' || tx.type === 'withdrawal' ? tx.type : 'other';
+    const amountNum = Number(tx.amount);
+    const signedAmount = mappedType === 'withdrawal' ? -Math.abs(amountNum) : Math.abs(amountNum);
+    return {
+      id: String(tx.id),
+      date: tx.date ? tx.date.slice(0, 10) : new Date().toISOString().slice(0, 10),
+      description: tx.description,
+      amount: signedAmount,
+      type: mappedType,
+    };
   }
 }
